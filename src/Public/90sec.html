@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>90 Second CPS Test | Click Speed Test</title>
+		<link rel="icon" type="image/x-icon" href="./logo.png">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+		<style>
+				* {
+						margin: 0;
+						padding: 0;
+						box-sizing: border-box;
+						font-family: 'Orbitron', sans-serif;
+				}
+
+			body {
+					background: url('/Assets/background.jpg') no-repeat center center fixed;
+					background-size: cover;
+					color: #00ffcc;
+					text-align: center;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					height: 100vh;
+			}
+
+				/* NAVIGATION BAR */
+				.navbar {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						padding: 15px 20px;
+						background: rgba(0, 0, 0, 0.7);
+						box-shadow: 0px 0px 10px #00ffcc;
+						position: fixed;
+						top: 0;
+						width: 100%;
+						z-index: 1000;
+				}
+
+				.navbar .logo {
+						font-size: 24px;
+						font-weight: bold;
+						color: #00ffcc;
+						text-shadow: 0px 0px 5px #00ffcc;
+				}
+
+				.navbar ul {
+						list-style: none;
+						display: flex;
+				}
+
+				.navbar ul li {
+						margin: 0 15px;
+				}
+
+				.navbar ul li a {
+						color: #fff;
+						text-decoration: none;
+						font-size: 18px;
+						transition: color 0.3s ease-in-out;
+				}
+
+				.navbar ul li a:hover {
+						color: #ff007f;
+				}
+
+				/* GAME UI */
+				.game-container {
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						height: 100vh;
+						margin-top: 50px;
+				}
+
+				#content {
+						width: 260px;
+						border: 3px solid #00ffcc;
+						border-radius: 10px;
+						padding: 20px;
+						font-size: 20px;
+						background: rgba(0, 0, 0, 0.6);
+						box-shadow: 0px 0px 15px #00ffcc;
+						margin-bottom: 20px;
+						text-align: center;
+				}
+
+				#clickarea {
+						width: 400px;
+						height: 250px;
+						border: 3px solid #ff007f;
+						border-radius: 15px;
+						text-align: center;
+						padding: 20px;
+						background: rgba(0, 0, 0, 0.6);
+						box-shadow: 0px 0px 15px #ff007f;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						position: relative;
+				}
+
+				#start {
+						border: none;
+						padding: 15px 30px;
+						font-size: 1.2rem;
+						color: #fff;
+						text-shadow: 0px 0px 10px #00ffcc;
+						border-radius: 8px;
+						background: linear-gradient(45deg, #00ffcc, #0077ff);
+						box-shadow: 0px 0px 15px #00ffcc;
+						cursor: pointer;
+						transition: all 0.3s ease-in-out;
+				}
+
+				#start:hover {
+						background: linear-gradient(45deg, #ff007f, #ff7700);
+						box-shadow: 0px 0px 25px #ff007f;
+						transform: scale(1.1);
+				}
+
+				/* RESULT MENU */
+				#result-menu {
+						display: none;
+						position: fixed;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						background: rgba(0, 0, 0, 0.9);
+						border: 3px solid #00ffcc;
+						border-radius: 10px;
+						padding: 20px;
+						width: 300px;
+						box-shadow: 0px 0px 20px #00ffcc;
+						text-align: center;
+				}
+
+				#result-menu h2 {
+						color: #ff007f;
+						margin-bottom: 10px;
+				}
+
+				#restart {
+						border: none;
+						padding: 10px 20px;
+						font-size: 1rem;
+						color: #fff;
+						border-radius: 5px;
+						background: #ff007f;
+						cursor: pointer;
+						margin-top: 10px;
+				}
+
+				#restart:hover {
+						background: #ff5500;
+				}
+
+			/* Footer */
+			.footer {
+					position: fixed;
+					bottom: 0;
+					width: 100%;
+					background: rgba(0, 0, 0, 0.7);
+					color: #00ffcc;
+					text-align: center;
+					padding: 10px;
+					font-weight: bold; /* Makes text bold */
+					font-size: 18px; /* Increases text size */
+					box-shadow: 0px -2px 10px #00ffcc;
+					text-shadow: 0px 0px 5px #00ffcc; /* Adds a glow effect */
+			}
+		</style>
+</head>
+<body>
+
+		<!-- NAVIGATION BAR -->
+		<nav class="navbar">
+			<div class="logo"> <img src="/Assets/logo.png" alt="Logo"style="width:50px;height:40px;">CPS Test</div>
+				<ul>
+						<li><a href="/index.html">🏠 Home</a></li>
+				</ul>
+		</nav>
+
+		<!-- GAME UI -->
+		<div class="game-container">
+				<div id="content">
+						<p>⏳ Timer: <span id="timer">0.000</span></p>
+						<p>🎯 Score: <span id="score">0</span></p>
+						<p>⚡ Clicks/s: <span id="clicks">0.00</span></p>
+				</div>
+
+				<div id="clickarea">
+						<button id="start">🚀 Start 90s Click Test!</button>
+				</div>
+		</div>
+
+		<!-- RESULT MENU -->
+		<div id="result-menu">
+				<h2>🎉 Test Over!</h2>
+				<p>🔥 Total Clicks: <span id="final-score">0</span></p>
+				<p>⚡ Clicks per Second: <span id="final-cps">0.00</span></p>
+				<button id="restart">🔄 Restart</button>
+		</div>
+
+		<script>
+				let score = 0;
+				let duration = 90; // Updated duration to 90 seconds
+				let startTime;
+				let ended = true;
+
+				const timerTxt = document.getElementById("timer");
+				const scoreTxt = document.getElementById("score");
+				const clicksTxt = document.getElementById("clicks");
+				const startBtn = document.getElementById("start");
+				const clickArea = document.getElementById("clickarea");
+				const resultMenu = document.getElementById("result-menu");
+				const finalScore = document.getElementById("final-score");
+				const finalCps = document.getElementById("final-cps");
+				const restartBtn = document.getElementById("restart");
+
+				function startGame() {
+						startBtn.style.display = 'none';
+						score = 0;
+						ended = false;
+						startTime = new Date().getTime();
+						resultMenu.style.display = "none";
+
+						const timerId = setInterval(() => {
+								const total = (new Date().getTime() - startTime) / 1000;
+								if (total < duration) {
+										timerTxt.textContent = total.toFixed(3);
+										clicksTxt.textContent = (score / total).toFixed(2);
+								} else {
+										ended = true;
+										clearInterval(timerId);
+										finalScore.textContent = score;
+										finalCps.textContent = (score / duration).toFixed(2);
+										resultMenu.style.display = "block";
+								}
+						}, 10);
+				}
+
+				clickArea.addEventListener("click", (e) => {
+						if (!ended && e.target !== startBtn) {
+								score++;
+								scoreTxt.textContent = score;
+						}
+				});
+
+				startBtn.addEventListener("click", startGame);
+				restartBtn.addEventListener("click", () => location.reload());
+		</script>
+
+	<!-- FOOTER -->
+	<footer class="footer">
+			<p>© 2025 Gaurav</p>
+	</footer>
+	
+</body>
+</html>

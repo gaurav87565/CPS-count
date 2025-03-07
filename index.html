@@ -1,124 +1,203 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>10 second Cps test | checks click per second</title>
-<link rel="icon"type="image/x-icon" href="./thepirates.png">
-<style type="text/css">
-  #content {
-    width: 200px;
-    border: 5px solid darkgreen;
-    font-size: 20px;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
-    user-select: none;
-  }
-
-  #clickarea {
-    width: 500px;
-    height : 300px;
-    border: 5px solid #dc0000;
-    font-size: 20px;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
-    position: relative;
-  }
-
-  #start {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    border: 0;
-    line-height: 2.5;
-    padding: 0 20px;
-    font-size: 1rem;
-    text-align: center;
-    color: white;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 10px;
-    background-color: blue;
-    background-image: linear-gradient(to top left,
-                  rgba(0, 0, 0, .2),
-                  rgba(0, 0, 0, .2) 30%,
-                  rgba(0, 0, 0, 0));
-    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                inset -2px -2px 3px rgba(0, 0, 0, .6);
-  }
-
-  #start:hover {
-    background-color: orange;
-  }
-
-  #start:active {
-    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                inset 2px 2px 3px rgba(0, 0, 0, .6);
-  }
-</style>
-</head>
-<body background="./background.jpg" style="background-repeat:no-repeat; background-size:100% 100%">
-  <div id="content">
-    Timer: <span id="timer"></span><br/>
-    Score: <span id="score"></span><br/>
-    Clicks/s: <span id="clicks"></span>
-  </div>
-  <div id="clickarea">
-    <button id="start">Click here to start playing</button>
-  </div>
-  <script type="text/javascript">
-    var score;
-    var duration = 10;
-    var startTime;
-    var ended = true;
-    var timerTxt = document.getElementById("timer");
-    var scoreTxt = document.getElementById("score");
-    var clicksTxt = document.getElementById("clicks");
-    var startBtn = document.getElementById("start");
-    var clickArea = document.getElementById("clickarea");
-    var show = function(elem) {
-      elem.style.display = 'inline';
-    };
-    var hide = function(elem) {
-      elem.style.display = 'none';
-    };
-    function startGame() {
-      hide(startBtn);
-      score = -1;
-      ended = false;
-      startTime = new Date().getTime();
-      var timerId = setInterval(function() {
-        var total = (new Date().getTime() - startTime) / 1000;
-        if (total < duration) {
-          timerTxt.textContent = total.toFixed(3);
-          clicksTxt.textContent = (score / total).toFixed(2);
-        } else {
-          ended = true;
-          clearInterval(timerId);
-          endGame();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaurav CPS test | Home</title>
+    <link rel="icon" type="image/x-icon" href="src/Public/Assets/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
         }
-      }, 1);
-  }
-  function endGame() {
-    var clicsBySeconds = (score / duration).toFixed(2);
-    timerTxt.textContent = duration.toFixed(3);
-    clicksTxt.textContent = clicsBySeconds;
-    show(startBtn);
-    setTimeout(function() {
-      alert('You made ' + score + ' clicks in ' + duration + 
-      ' seconds. It is ' + clicsBySeconds + 
-      ' clicks by seconds. Try again!');
-    }, 10);
-  }
-  startBtn.addEventListener("click", function(e) {
-    startGame();
-  });
-  clickArea.addEventListener("click", function(e) {
-    if (!ended) {
-      score++;
-      scoreTxt.textContent = score;
-    }
-  });
-</script>
+
+        body {
+            background: url('/src/Public/Assets/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #00ffcc;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0px 0px 10px #00ffcc;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ffcc;
+            text-shadow: 0px 0px 5px #00ffcc;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar ul li a:hover {
+            color: #ff007f;
+        }
+
+        /* HAMBURGER MENU */
+        .menu-icon {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #00ffcc;
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: rgba(0, 0, 0, 0.9);
+                width: 200px;
+                border-left: 3px solid #00ffcc;
+                padding: 10px 0;
+            }
+
+            .navbar ul.active {
+                display: flex;
+            }
+
+            .navbar ul li {
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        /* HOME CONTENT */
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .home-title {
+            font-size: 28px;
+            text-shadow: 0px 0px 15px #00ffcc;
+            margin-bottom: 20px;
+        }
+
+        /* CPS TEST BUTTONS */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .cps-button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0px 0px 10px #00ffcc;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #00ffcc, #0077ff);
+            box-shadow: 0px 0px 15px #00ffcc;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cps-button:hover {
+            background: linear-gradient(45deg, #ff007f, #ff7700);
+            box-shadow: 0px 0px 25px #ff007f;
+            transform: scale(1.1);
+        }
+
+        /* RESPONSIVENESS */
+        @media screen and (max-width: 480px) {
+            .cps-button {
+                width: 90%;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #00ffcc;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold; /* Makes text bold */
+            font-size: 18px; /* Increases text size */
+            box-shadow: 0px -2px 10px #00ffcc;
+            text-shadow: 0px 0px 5px #00ffcc; /* Adds a glow effect */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="logo"> <img src="src/Public/Assets/logo.png" alt="Logo"style="width:50px;height:40px;">CPS Test</div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <ul id="menu">
+            <li><a href="/index.html">🏠 Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME CONTENT -->
+    <div class="home-container">
+        <h1 class="home-title">⚡ Choose Your CPS Test Duration ⚡</h1>
+        
+        <div class="button-container">
+            <button class="cps-button" onclick="startTest(10)">🔥 10 Second Test</button>
+            <button class="cps-button" onclick="startTest(30)">🔥 30 Second Test</button>
+            <button class="cps-button" onclick="startTest(60)">🔥 60 second Test</button>
+            <button class="cps-button" onclick="startTest(90)">🔥 90 Second Test</button>
+            <button class="cps-button" onclick="startTest(120)">🔥 120 Second Test</button>
+        </div>
+    </div>
+
+    <!-- Link to External JavaScript File -->
+    <script src="src/Public/Pages/script.js"></script>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Gaurav</p>
+    </footer>
+
 </body>
 </html>
