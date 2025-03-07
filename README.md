@@ -41,8 +41,8 @@
 ### Hosting 
     Register in [Render](https://render.com) 
     • Create a new Web service monitor.
-    • Build Command = npm install
-    • Start Command = npm run start
+    • Build Command = npm install express
+    • Start Command = node server.js
 
     Add Environment details 
     • port ""
