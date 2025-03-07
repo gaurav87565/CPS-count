@@ -45,9 +45,7 @@
     • Start Command = npm run start
 
     Add Environment details 
-    • token "",
-    • channelId "",
-    • expressPort ""
+    • port ""
 
     Deploy your service
     • After the Deploy is completed you will see the live server add that website into some 
