@@ -3,5 +3,5 @@ function toggleMenu() {
 }
 
 function startTest(duration) {
-	window.location.href = `src/Public/Pages/${duration}sec.html?duration=${duration}`;
+	window.location.href = `./src/Public/Pages/${duration}sec.html?duration=${duration}`;
 }
