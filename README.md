@@ -27,11 +27,11 @@
     
     OR
 
-    Join our discord server [Discord](https://discord.gg/gMq7uwHSjY).
+    Join our discord server [Discord](https://discord.gg/kAYpdenZ8b).
 
 ## Website Preview
 
-- <h1>Preview : <a href="" target="_blank">
+- <h1>Preview : <a href="https://cps-mdhv.onrender.com" target="_blank">
     <img src="https://img.shields.io/static/v1?message=Website&label=&color=ffffff&labelColor=000000&style=for-the-badge" height="25" alt="website"  />
   </a></h1>
 
@@ -61,7 +61,7 @@
 - <h1 align="center">If you encounter any error join our discord server or open a issue on the github page</h1>
       
     <div align="left">
-  <a href="https://discord.gg/gMq7uwHSjY" target="_blank">
+  <a href="https://discord.gg/kAYpdenZ8b" target="_blank">
     <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="discord logo"  />
   </a>
   <a href="https://github.com/gaurav87565/CPS-count/issues" target="_blank">
